@@ -30,20 +30,21 @@
                 <form enctype='multipart/form-data' action='/find_country/' method='POST'>
                     <label for="Image" class="form-label">Upload an image containing a flag</label>
                     <input class="form-control" type="file" accept=".jpg,.png" id="formFile" name="user_image" onchange="preview()">
-                    <button onclick="showProgress()" class="btn btn-primary mt-3">Get Country Name</button>
+                    <button onclick="" class="btn btn-primary mt-3" id="get_country_button" disabled='true'>Get Country Name</button>
                 </form>
-                <button onclick="clearImage()" class="btn btn-primary mt-3">Clear</button>
+                <button onclick="clearImage()" disabled={isClear} class="btn btn-primary mt-3" id='clear_button'>Clear</button>
             </div>
             <img id="frame" src="" class="img-fluid" al="User Image" />
-            <div id="output">{{ country_name, flag }}</div>
-            <img id="output" src='{{ flag }}' alt="Official Flag of Country" />
+            <p id="output" style="display: block">This flag belongs to {{ country_name}}!</p>
+            <img id="output_flag" src="{{ flag }}" alt="Official Flag of {{ country_name }}" style="display: block;" />
+            <p id="output_error" style="display: none; color: red;">{{ country_name }}</p>
         </div>
     </div>
 
     <!-- progress bar -->
-    <div class="spinner-border text-dark" role="status" id='get_country_progress' style='align-items: center; display: none;'>
+    <!-- <div class="spinner-border text-dark" role="status" id='get_country_progress' style='align-items: center; display: none;'>
         <span class="visually-hidden">Loading...</span>
-    </div>
+    </div> -->
 
     <div class="container" style="position: absolute; bottom: 0; text-align: center;">
         Impressed? Check out my <a href="https://github.com/zevrosenbaum" target="_blank" 
@@ -54,19 +55,32 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
+        isClear = False;
         function preview() {
             frame.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById('get_country_button').disabled=false;
+            document.getElementById('clear_button').disabled=false;
         }
+
         function clearImage() {
             document.getElementById('formFile').value = null;
             frame.src = "";
-            document.getElementById('output').style.display='none';
-            document.getElementById('get_country_progress').style.display='none';
+            location.reload();
+            // document.getElementById('get_country_progress').style.display='none';
         }
-        function showProgress() {
-            document.getElementById('get_country_progress').style.display='display';
+
+        function showOutput() {
+            // document.getElementById('get_country_progress').style.visibility='visible';
             document.getElementById('output').style.display='block';
+            document.getElementById('output_flag').style.display='block';
         }
+
+        function clearOutput() {
+            document.getElementById('output').style.display=none;
+            document.getElementById('output_flag').style.display=none;
+            document.getElementById('output_error').style.display=none;
+        }
+
     </script>
 
     </body>
