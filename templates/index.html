@@ -5,48 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Whose Flag Is It Anyway?</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index_style.css') }}">
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-    <div class="container d-flex justify-content-center">
-        <div class="page-header" style="text-align: justify;">
-            <h1>Whose Flag Is It Anyway?</h1>
+    <div class="wrapper">
+        <div class="container d-flex justify-content-center">
+            <div class="page-header" style="text-align: justify;">
+                <h1>Whose Flag Is It Anyway?</h1>
+            </div>
         </div>
-    </div>
-    <div class="container d-flex justify-content-center">
-        <div class="panel panel-default" style="text-align: justify;">
-            <div class="panel-body">
-                Please upload a photo containing any flag to identify which country it belongs to!
+        <div class="container d-flex justify-content-center">
+            <div class="panel panel-default" style="text-align: justify;">
+                <div class="panel-body">
+                    Please upload a photo containing any flag to identify which country it belongs to!
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-bottom: 5%;"></div>
+
+        <div class="container d-flex justify-content-center">
+            <div class="container col-md-6">
+                <div class="mb-5">
+                    <form enctype='multipart/form-data' action='/find_country/' method='POST'>
+                        <label for="Image" class="form-label">Upload an image containing a flag</label>
+                        <input class="form-control" type="file" accept=".jpg,.png" id="formFile" name="user_image" onchange="preview()">
+                        <br>
+                        <button onclick="showSpinner()" class="btn btn-primary" id="get_country_button" disabled='true'>Get Country Name</button>
+                        <button class="btn btn-primary" type="button" id='spinning_button' disabled style='display: none;'>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Loading...</span>
+                        </button>
+                    </form>
+                    <button onclick="clearImage()" disabled='false' class="btn btn-primary mt-3" id='clear_button'>Clear</button>
+                </div>
+                <img id="frame" src="" class="img-fluid" al="User Image" />
+                {% if country_name %}
+                    <p id="output">This flag belongs to {{ country_name}}!</p>
+                    <img id="output_flag" src="{{ flag }}" class="img-fluid" alt="Official Flag of {{ country_name }}" />
+                {% endif %}
+                <p id="output_error" style="display: none; color: red;">{{ country_name }}</p>
             </div>
         </div>
     </div>
-
-    <div style="padding-bottom: 5%;"></div>
-
-    <div class="container d-flex justify-content-center">
-        <div class="container col-md-6">
-            <div class="mb-5">
-                <form enctype='multipart/form-data' action='/find_country/' method='POST'>
-                    <label for="Image" class="form-label">Upload an image containing a flag</label>
-                    <input class="form-control" type="file" accept=".jpg,.png" id="formFile" name="user_image" onchange="preview()">
-                    <button onclick="" class="btn btn-primary mt-3" id="get_country_button" disabled='true'>Get Country Name</button>
-                </form>
-                <button onclick="clearImage()" disabled={isClear} class="btn btn-primary mt-3" id='clear_button'>Clear</button>
-            </div>
-            <img id="frame" src="" class="img-fluid" al="User Image" />
-            <p id="output" style="display: block">This flag belongs to {{ country_name}}!</p>
-            <img id="output_flag" src="{{ flag }}" alt="Official Flag of {{ country_name }}" style="display: block;" />
-            <p id="output_error" style="display: none; color: red;">{{ country_name }}</p>
-        </div>
-    </div>
-
-    <!-- progress bar -->
-    <!-- <div class="spinner-border text-dark" role="status" id='get_country_progress' style='align-items: center; display: none;'>
-        <span class="visually-hidden">Loading...</span>
-    </div> -->
-
-    <div class="container" style="position: absolute; bottom: 0; text-align: center;">
+    <div class="footer">
         Impressed? Check out my <a href="https://github.com/zevrosenbaum" target="_blank" 
             title="GitHub Link: https://github.com/zevrosenbaum">GitHub</a> and 
             <a href="https://www.linkedin.com/in/zevrosenbaum82" target="_blank" 
@@ -65,20 +68,11 @@
         function clearImage() {
             document.getElementById('formFile').value = null;
             frame.src = "";
-            location.reload();
-            // document.getElementById('get_country_progress').style.display='none';
         }
 
-        function showOutput() {
-            // document.getElementById('get_country_progress').style.visibility='visible';
-            document.getElementById('output').style.display='block';
-            document.getElementById('output_flag').style.display='block';
-        }
-
-        function clearOutput() {
-            document.getElementById('output').style.display=none;
-            document.getElementById('output_flag').style.display=none;
-            document.getElementById('output_error').style.display=none;
+        function showSpinner() {
+            document.getElementById('get_country_button').style.display='none';
+            document.getElementById('spinning_button').style.display='block';
         }
 
     </script>
