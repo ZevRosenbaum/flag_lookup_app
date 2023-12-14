@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Whose Flag Is It Anyway?</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <div class="container d-flex justify-content-center">
+        <div class="page-header" style="text-align: justify;">
+            <h1>Whose Flag Is It Anyway?</h1>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="panel panel-default" style="text-align: justify;">
+            <div class="panel-body">
+                Please upload a photo containing any flag to identify which country it belongs to!
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-bottom: 5%;"></div>
+
+    <div class="container d-flex justify-content-center">
+        <div class="container col-md-6">
+            <div class="mb-5">
+                <form enctype='multipart/form-data' action='/find_country/' method='POST'>
+                    <label for="Image" class="form-label">Upload an image containing a flag</label>
+                    <input class="form-control" type="file" accept=".jpg,.png" id="formFile" name="user_image" onchange="preview()">
+                    <button onclick="showProgress()" class="btn btn-primary mt-3">Get Country Name</button>
+                </form>
+                <button onclick="clearImage()" class="btn btn-primary mt-3">Clear</button>
+            </div>
+            <img id="frame" src="" class="img-fluid" al="User Image" />
+            <div id="output">{{ country_name, flag }}</div>
+            <img id="output" src='{{ flag }}' alt="Official Flag of Country" />
+        </div>
+    </div>
+
+    <!-- progress bar -->
+    <div class="spinner-border text-dark" role="status" id='get_country_progress' style='align-items: center; display: none;'>
+        <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <div class="container" style="position: absolute; bottom: 0; text-align: center;">
+        Impressed? Check out my <a href="https://github.com/zevrosenbaum" target="_blank" 
+            title="GitHub Link: https://github.com/zevrosenbaum">GitHub</a> and 
+            <a href="https://www.linkedin.com/in/zevrosenbaum82" target="_blank" 
+            title="LinkedIn Link: https://www.linkedin.com/in/zevrosenbaum82">LinkedIn Profile</a>.
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function preview() {
+            frame.src = URL.createObjectURL(event.target.files[0]);
+        }
+        function clearImage() {
+            document.getElementById('formFile').value = null;
+            frame.src = "";
+            document.getElementById('output').style.display='none';
+            document.getElementById('get_country_progress').style.display='none';
+        }
+        function showProgress() {
+            document.getElementById('get_country_progress').style.display='display';
+            document.getElementById('output').style.display='block';
+        }
+    </script>
+
+    </body>
+</html>
