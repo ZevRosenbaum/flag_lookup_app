@@ -4,6 +4,7 @@ body {
 }
 
 .wrapper {
+    padding-top: 10%;
     margin-left:auto;
     margin-right:auto;
     display: grid;
@@ -12,7 +13,7 @@ body {
 
 button {
     display: inline-block;
-    width: 323px;
+    width: 100%;
 }
 
 .footer {
@@ -22,5 +23,24 @@ button {
     width: 100%;
     background-color: #D3D3D3;
     color: black;
+    text-align: center;
+}
+
+.img-fluid {
+    width: 100%;
+}
+
+.page-header {
+    position: fixed;
+    background: radial-gradient(circle at 18.7% 37.8%, rgb(240, 245, 240) 0%, rgb(225, 244, 245) 90%);
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+    border-bottom: 0.5mm ridge rgba(150, 190, 20, .6);
+}
+
+h1, p {
     text-align: center;
 }

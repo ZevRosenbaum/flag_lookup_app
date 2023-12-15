@@ -1,6 +1,3 @@
-from matplotlib import text
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 import json
 import torch
 import open_clip
@@ -8,9 +5,7 @@ import cv2
 from sentence_transformers import util
 from PIL import Image
 import os
-from os import listdir
 from flask import *
-import requests
 
 app = Flask(__name__)
 
