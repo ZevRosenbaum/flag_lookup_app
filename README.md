@@ -4,13 +4,17 @@
 <u>**Description:**</u><br>
 Program for users to upload a photo of a flag and find out what country that flag belongs to.
 
-<u>**Technologies Used:**</u><br>
-**Frontend Technologies:** HTML/CSS, JavaScript, Bootstrap, Jinja<br>
-**Backend Technologies:** Python, Flask
+<u>**Technologies Used:**</u>
+<ul>
+    <li><b>Frontend Technologies:</b> HTML/CSS, JavaScript, Bootstrap, Jinja<br></li>
+    <li><b>Backend Technologies:</b> Python, Flask</li>
+</ul>
+<br>
 
 <u>**Logic:**</u><br>
 Used a Contrastive Language-Image Pre-Training (CLIP)-Based pre-trained model from openAI. Backend logic was inspired from this [Medium post](https://medium.com/scrapehero/exploring-image-similarity-approaches-in-python-b8ca0a3ed5a3).
 
+<u>**Final Notes:**</u><br>
 If there are any errors or issues with this program, please feel free to email me:
 zevrosenbaum82@gmail.com.
 
