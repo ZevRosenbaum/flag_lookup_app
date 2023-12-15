@@ -5,8 +5,6 @@
 #### Program for users to upload a photo of a flag and find out what country that flag belongs to.
 
 
-![Demo](./flag_lookup_demo.mov)
-
 
 Partially inspired by Sheldon Cooper's Fun With Flags!
 <br>
