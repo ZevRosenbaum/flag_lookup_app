@@ -14,6 +14,9 @@ Program for users to upload a photo of a flag and find out what country that fla
 <u>**Logic:**</u><br>
 Used a Contrastive Language-Image Pre-Training (CLIP)-Based pre-trained model from openAI. Backend logic was inspired from this [Medium post](https://medium.com/scrapehero/exploring-image-similarity-approaches-in-python-b8ca0a3ed5a3).
 
+<u>**Demo:**</u><br>
+![User Demo](flag_lookup_demo.gif)
+
 <u>**Final Notes:**</u><br>
 If there are any errors or issues with this program, please feel free to email me:
 zevrosenbaum82@gmail.com.
