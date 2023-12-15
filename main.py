@@ -69,4 +69,4 @@ def find_country():
     return render_template('index.html', country_name=error_message, flag=None)
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(debug=False)
