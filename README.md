@@ -17,10 +17,6 @@ Used a Contrastive Language-Image Pre-Training (CLIP)-Based pre-trained model fr
 <u>**Demo:**</u><br>
 ![User Demo](flag_lookup_demo.gif)
 
-<u>**Final Notes:**</u><br>
-If there are any errors or issues with this program, please feel free to email me:
-zevrosenbaum82@gmail.com.
-
 Just one last thing...
 
 This app was partially inspired by Sheldon Cooper's Fun With Flags!
